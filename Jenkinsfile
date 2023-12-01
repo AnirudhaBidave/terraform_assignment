@@ -9,9 +9,7 @@ environment {
         stage('Init') {
             steps {
                 script{
-                     withAWS(region: AWS_REGION, credentials: 'AWS') {
                     sh 'terraform init'
-                     }
                 }
             }
         }
@@ -19,7 +17,9 @@ environment {
         stage('Plan') {
             steps {
                 script{
+                     withAWS(region: AWS_REGION, credentials: 'AWS_KEYS') {
                     sh 'terraform plan'
+                     }
                 }
             }
         }
