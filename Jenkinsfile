@@ -8,22 +8,28 @@ environment {
     stages {
         stage('Init') {
             steps {
-                sh 'terraform init'
+                script{
+                    sh 'terraform init'
+                }
             }
         }
 
         stage('Plan') {
             steps {
-                withAWS(region: AWS_REGION, credentials: 'AWS_KEYS') {
-                sh 'terraform plan'
+                script{
+                    withAWS(region: AWS_REGION, credentials: 'AWS_KEYS') {
+                    sh 'terraform plan'
+                    }
                 }
             }
         }
 
         stage('Apply') {
             steps {
-                withAWS(region: AWS_REGION, credentials: 'AWS_KEYS') {
-                sh 'terraform apply -auto-approve'
+                script{
+                    withAWS(region: AWS_REGION, credentials: 'AWS_KEYS') {
+                    sh 'terraform apply -auto-approve'
+                    }
                 }
             }
         }
