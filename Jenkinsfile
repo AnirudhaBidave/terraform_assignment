@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-environment {
-        AWS_REGION = 'us-west-1'
-    }
+// environment {
+//         AWS_REGION = 'us-west-1'
+//     }
     
     stages {
         stage('Init') {
