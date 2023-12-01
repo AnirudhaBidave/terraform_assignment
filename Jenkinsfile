@@ -18,8 +18,7 @@ environment {
             steps {
                 script{
                      withAWS(region: AWS_REGION, credentials: 'AWS_KEYS') {
-                    def tfPlanOutput = sh(script: 'terraform plan -out=tfplan', returnStdout: true).trim()
-                        echo "Terraform Plan Output: ${tfPlanOutput}"
+                     sh 'terraform plan'
                      }
                 }
             }
@@ -28,7 +27,9 @@ environment {
         stage('Apply') {
             steps {
                 script{
-                    sh 'terraform apply -auto-approve tfplan'
+                    withAWS(region: AWS_REGION, credentials: 'AWS_KEYS') {
+                    sh 'terraform apply -auto-approve'
+                    }
                 }
             }
         }
