@@ -33,5 +33,13 @@ environment {
                 }
             }
         }
+
+        stage('Print Workspace Directory') {
+            steps {
+                script {
+                    echo "Workspace Directory: ${workspace}"
+                }
+            }
+        }
     }
 }
