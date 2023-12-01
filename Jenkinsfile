@@ -25,6 +25,7 @@ environment {
             steps {
                 withAWS(region: AWS_REGION, credentials: 'AWS_KEYS') {
                 sh 'terraform apply -auto-approve'
+                }
             }
         }
     }
