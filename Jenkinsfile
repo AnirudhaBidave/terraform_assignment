@@ -17,9 +17,7 @@ environment {
         stage('Plan') {
             steps {
                 script{
-                     withAWS(region: AWS_REGION, credentials: 'AWS_KEYS') {
                      sh 'terraform plan'
-                     }
                 }
             }
         }
@@ -27,9 +25,7 @@ environment {
         stage('Apply') {
             steps {
                 script{
-                    withAWS(region: AWS_REGION, credentials: 'AWS_KEYS') {
                     sh 'terraform apply -auto-approve'
-                    }
                 }
             }
         }
